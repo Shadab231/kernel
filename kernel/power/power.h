@@ -190,7 +190,6 @@ struct pm_sleep_state {
 /* kernel/power/suspend.c */
 extern struct pm_sleep_state pm_states[];
 
-extern bool valid_state(suspend_state_t state);
 extern int suspend_devices_and_enter(suspend_state_t state);
 //<20130327> <marc.huang> merge from android kernel 3.0 - add enter_state declarition when CONFIG_SUSPEND is defined
 extern int enter_state(suspend_state_t state);
@@ -199,9 +198,7 @@ static inline int suspend_devices_and_enter(suspend_state_t state)
 {
 	return -ENOSYS;
 }
-//<20130327> <marc.huang> merge from android kernel 3.0 - add enter_state definition when CONFIG_SUSPEND is undefined
 static inline int enter_state(suspend_state_t state) { return -ENOSYS; }
-static inline bool valid_state(suspend_state_t state) { return false; }
 #endif /* !CONFIG_SUSPEND */
 
 #ifdef CONFIG_PM_TEST_SUSPEND
